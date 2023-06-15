@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
@@ -31,5 +31,23 @@ public interface PessoaDocument {
                             schema = @Schema(implementation = Pessoa.class)) }),
             @ApiResponse(responseCode = "400", description = "Erro ao Inserir Objeto",
                     content = @Content) })
-    Pessoa cadastrarContato(@Parameter(description = "Dados pertinentes para o cadastro de Pessoas") @RequestBody Pessoa pessoa);
+    Pessoa salvarPessoa(@Parameter(description = "Dados pertinentes para o cadastro de Pessoas") @RequestBody Pessoa pessoa);
+
+    @Operation(summary = "Altera Dados de uma Pessoa")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Pessoa Alterada com Sucesso",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Pessoa.class)) }),
+            @ApiResponse(responseCode = "400", description = "Erro ao Alterar Objeto",
+                    content = @Content) })
+    Pessoa alterarPessoa(@Parameter(description = "Dados pertinentes para o Alteração de Pessoas") @RequestBody Pessoa pessoa);
+
+    @Operation(summary = "Excluir Dados de uma Pessoa")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Pessoa Excluida com Sucesso",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = Pessoa.class)) }),
+            @ApiResponse(responseCode = "400", description = "Erro ao Alterar Objeto",
+                    content = @Content) })
+    void excluirPessoa(@Parameter(description = "Dados pertinentes para o Exclusão de Pessoas") @PathVariable Integer id);
 }

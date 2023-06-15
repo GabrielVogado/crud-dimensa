@@ -11,6 +11,7 @@ import java.util.List;
 public class PessoaService implements IPessoaService {
 
     private PessoaRepository pessoaRepository;
+
     /**
      * @return
      */
@@ -27,4 +28,22 @@ public class PessoaService implements IPessoaService {
     public Pessoa insere(Pessoa pessoa) {
         return pessoaRepository.save(pessoa);
     }
+
+    /**
+     * @param pessoa
+     * @return
+     */
+    @Override
+    public Pessoa alterar(Pessoa pessoa) {
+        return pessoaRepository.save(pessoa);
+    }
+
+    /**
+     * @param id
+     */
+    @Override
+    public void excluir(Integer id) {
+        pessoaRepository.deleteById(id);
+    }
+
 }
