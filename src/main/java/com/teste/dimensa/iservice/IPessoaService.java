@@ -8,4 +8,8 @@ public interface IPessoaService {
     List<Pessoa> listaPessoa();
 
     Pessoa insere(Pessoa pessoa);
+
+    Pessoa alterar(Pessoa pessoa);
+
+    void excluir(Integer id);
 }

@@ -4,14 +4,12 @@ import com.teste.dimensa.document.PessoaDocument;
 import com.teste.dimensa.entity.Pessoa;
 import com.teste.dimensa.iservice.IPessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/cadastro")
 public class PessoaController implements PessoaDocument {
 
     private IPessoaService pessoaService;
@@ -27,8 +25,17 @@ public class PessoaController implements PessoaDocument {
     }
 
     @PostMapping("/insere-pessoa")
-    public Pessoa cadastrarContato(@RequestBody Pessoa pessoa) {
+    public Pessoa salvarPessoa(@RequestBody Pessoa pessoa) {
         return pessoaService.insere(pessoa);
     }
 
+    @PutMapping("/altera-pessoa")
+    public Pessoa alterarPessoa(@RequestBody Pessoa pessoa) {
+        return pessoaService.alterar(pessoa);
+    }
+
+    @DeleteMapping("/{id}")
+    public void excluirPessoa(@PathVariable Integer id) {
+        pessoaService.excluir(id);
+    }
 }

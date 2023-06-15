@@ -18,7 +18,7 @@ import java.util.List;
 public class Pessoa implements Serializable {
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "nome")
@@ -30,9 +30,10 @@ public class Pessoa implements Serializable {
     @Column(name = "telefone")
     private String telefone;
 
-  /*  @Column(name = "dataNascimento")
-    private LocalDate dataNascimento;*/
+    @Column(name = "dataNascimento")
+    private LocalDate dataNascimento;
 
-    @OneToMany
-    private List<Endereco> enderecoList;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pessoa_id")
+    private List<Endereco> enderecos;
 }
