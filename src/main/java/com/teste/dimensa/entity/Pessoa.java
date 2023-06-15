@@ -4,12 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -31,6 +30,9 @@ public class Pessoa implements Serializable {
     @Column(name = "telefone")
     private String telefone;
 
-    @Column(name = "dataNascimento")
-    private Date dataNascimento;
+  /*  @Column(name = "dataNascimento")
+    private LocalDate dataNascimento;*/
+
+    @OneToMany
+    private List<Endereco> enderecoList;
 }
