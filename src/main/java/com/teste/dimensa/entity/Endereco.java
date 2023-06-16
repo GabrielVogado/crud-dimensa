@@ -1,19 +1,22 @@
 package com.teste.dimensa.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigInteger;
+
 @Entity
-@Data
-@Table(name = "Endereco")
+@Getter
+@Setter
+@Table(name = "endereco")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Endereco implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "rua")
@@ -25,7 +28,7 @@ public class Endereco implements Serializable {
     @Column(name = "cep")
     private String cep;
 
-    @ManyToOne
-    @JoinColumn(name = "pessoaID", foreignKey = @ForeignKey(name = "FK_Pessoa_Endereco"))
-    private Pessoa pessoa;
+    @Column(name = "pessoa_id")
+    private BigInteger pessoa_id;
+
 }
