@@ -1,17 +1,21 @@
 package com.teste.dimensa.controller;
 
+import com.teste.dimensa.document.PessoaDocument;
 import com.teste.dimensa.dto.PessoaDTO;
+import com.teste.dimensa.dto.UpdatePessoaDTO;
 import com.teste.dimensa.entity.Pessoa;
 import com.teste.dimensa.iservice.IPessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-public class PessoaController {
+public class PessoaController implements PessoaDocument {
 
-    private IPessoaService pessoaService;
+    private final IPessoaService pessoaService;
 
     @Autowired
     public PessoaController(IPessoaService pessoaService) {
@@ -24,22 +28,23 @@ public class PessoaController {
     }
 
     @GetMapping("/pessoa/{id}")
-    public Pessoa buscaPessoa(Integer id) {
-        return pessoaService.buscaPessoa(id);
+    public ResponseEntity<Pessoa> buscaPessoa(@Valid @PathVariable Integer id) {
+        return pessoaService.buscaPessoa(id).map(pessoa -> ResponseEntity.ok().body(pessoa))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping("/insere-pessoa")
-    public Pessoa salvarPessoa(@RequestBody PessoaDTO pessoa) {
+    public Pessoa salvarPessoa(@Valid @RequestBody PessoaDTO pessoa) {
         return pessoaService.insere(pessoa);
     }
 
     @PutMapping("/altera-pessoa/{id}")
-    public Pessoa alterarPessoa(@RequestBody PessoaDTO pessoa, @PathVariable Integer id) {
+    public Pessoa alterarPessoa(@Valid @RequestBody UpdatePessoaDTO pessoa, @Valid @PathVariable Integer id) {
         return pessoaService.alterar(pessoa, id);
     }
 
-    @DeleteMapping("/{id}")
-    public void excluirPessoa(@PathVariable Integer id) {
+    @DeleteMapping("/excluir-pessoa/{id}")
+    public void excluirPessoa(@Valid @PathVariable Integer id) {
         pessoaService.excluir(id);
     }
 }

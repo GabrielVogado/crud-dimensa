@@ -1,6 +1,7 @@
 package com.teste.dimensa.document;
 
 import com.teste.dimensa.dto.PessoaDTO;
+import com.teste.dimensa.dto.UpdatePessoaDTO;
 import com.teste.dimensa.entity.Pessoa;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -8,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -32,7 +34,7 @@ public interface PessoaDocument {
                             schema = @Schema(implementation = Pessoa.class)) }),
             @ApiResponse(responseCode = "204", description = "Pessoa não encontrada",
                     content = @Content) })
-    Pessoa buscaPessoa(Integer id);
+    ResponseEntity<Pessoa> buscaPessoa(Integer id);
 
     @Operation(summary = "Insere Dados de uma Pessoa")
     @ApiResponses(value = {
@@ -50,7 +52,7 @@ public interface PessoaDocument {
                             schema = @Schema(implementation = Pessoa.class)) }),
             @ApiResponse(responseCode = "400", description = "Erro ao Alterar Objeto",
                     content = @Content) })
-    Pessoa alterarPessoa(@Parameter(description = "Dados pertinentes para o Alteração de Pessoas") @RequestBody PessoaDTO pessoa);
+    Pessoa alterarPessoa(@Parameter(description = "Dados pertinentes para o Alteração de Pessoas") @RequestBody UpdatePessoaDTO pessoa, @PathVariable Integer id);
 
     @Operation(summary = "Excluir Dados de uma Pessoa")
     @ApiResponses(value = {
