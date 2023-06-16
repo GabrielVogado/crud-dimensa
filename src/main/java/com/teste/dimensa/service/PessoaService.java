@@ -3,15 +3,15 @@ package com.teste.dimensa.service;
 
 import com.teste.dimensa.dto.EnderecoDTO;
 import com.teste.dimensa.dto.PessoaDTO;
+import com.teste.dimensa.dto.UpdatePessoaDTO;
 import com.teste.dimensa.entity.Endereco;
 import com.teste.dimensa.entity.Pessoa;
 import com.teste.dimensa.iservice.IPessoaService;
-import com.teste.dimensa.repository.EnderecoRepository;
 import com.teste.dimensa.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,13 +20,10 @@ import java.util.Optional;
 public class PessoaService implements IPessoaService {
 
     private final PessoaRepository pessoaRepository;
-    private final EnderecoRepository enderecoRepository;
 
     @Autowired
-    public PessoaService(PessoaRepository pessoaRepository,
-                         EnderecoRepository enderecoRepository) {
+    public PessoaService(PessoaRepository pessoaRepository) {
         this.pessoaRepository = pessoaRepository;
-        this.enderecoRepository = enderecoRepository;
     }
 
     /**
@@ -70,35 +67,19 @@ public class PessoaService implements IPessoaService {
      * @return
      */
     @Override
-    public Pessoa alterar(PessoaDTO pessoa, Integer id) {
-        Optional<Pessoa> pessoaUpdate = pessoaRepository.findById(id);
-        if (pessoaUpdate.isPresent()) {
-            Pessoa pessoaEntity = Pessoa.builder()
-                    .id(id)
-                    .nome(pessoa.getNome())
-                    .dataNascimento(pessoa.getDataNascimento())
-                    .email(pessoa.getEmail())
-                    .telefone(pessoa.getTelefone())
-                    .enderecos(updateEndereco(pessoa, id)).build();
-           return pessoaRepository.save(pessoaEntity);
-        }else {
-            throw new IllegalArgumentException("Pessoa já cadastrada");
-        }
+    public Pessoa alterar(UpdatePessoaDTO pessoa, Integer id) {
+        return pessoaRepository.findById(id)
+                .map(pessoaUpdate -> {
+                    pessoaUpdate.setNome(pessoa.getNome());
+                    pessoaUpdate.setEmail(pessoa.getEmail());
+                    pessoaUpdate.setTelefone(pessoa.getTelefone());
+                    pessoaUpdate.setDataNascimento(pessoa.getDataNascimento());
+                    Pessoa updated = pessoaRepository.save(pessoaUpdate);
+                    return ResponseEntity.ok().body(updated);
+                }).orElse(ResponseEntity.notFound().build()).getBody();
     }
 
-    private List<Endereco> updateEndereco(PessoaDTO pessoaUpdate, Integer id) {
-        List<Endereco> enderecos = new ArrayList<>();
-            for (EnderecoDTO endereco: pessoaUpdate.getEnderecos()){
-                Endereco endrecoBuilder = Endereco.builder()
-                        .pessoa_id(BigInteger.valueOf(id))
-                        .rua(endereco.getRua())
-                        .cep(endereco.getCep())
-                        .numero(endereco.getNumero()).build();
 
-                enderecos.add(endrecoBuilder);
-            }
-            return enderecos;
-    }
     /**
      * @param id
      */
@@ -112,8 +93,8 @@ public class PessoaService implements IPessoaService {
      * @return
      */
     @Override
-    public Pessoa buscaPessoa(Integer id) {
-        return pessoaRepository.findById(id).get();
+    public Optional<Pessoa> buscaPessoa(Integer id) {
+        return pessoaRepository.findById(id);
     }
 
 }
