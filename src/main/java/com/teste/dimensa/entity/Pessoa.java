@@ -1,25 +1,22 @@
 package com.teste.dimensa.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
+@Builder
 @Table(name = "Pessoa")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Pessoa implements Serializable {
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "nome")
@@ -31,6 +28,10 @@ public class Pessoa implements Serializable {
     @Column(name = "telefone")
     private String telefone;
 
-    @Column(name = "dataNascimento")
-    private Date dataNascimento;
+    @Column(name = "data_nascimento")
+    private String dataNascimento;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pessoa_id")
+    private List<Endereco> enderecos;
 }
