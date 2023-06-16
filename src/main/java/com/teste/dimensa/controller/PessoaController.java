@@ -1,6 +1,6 @@
 package com.teste.dimensa.controller;
 
-import com.teste.dimensa.document.PessoaDocument;
+import com.teste.dimensa.dto.PessoaDTO;
 import com.teste.dimensa.entity.Pessoa;
 import com.teste.dimensa.iservice.IPessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cadastro")
-public class PessoaController implements PessoaDocument {
+public class PessoaController {
 
     private IPessoaService pessoaService;
 
@@ -30,13 +29,13 @@ public class PessoaController implements PessoaDocument {
     }
 
     @PostMapping("/insere-pessoa")
-    public Pessoa salvarPessoa(@RequestBody Pessoa pessoa) {
+    public Pessoa salvarPessoa(@RequestBody PessoaDTO pessoa) {
         return pessoaService.insere(pessoa);
     }
 
-    @PutMapping("/altera-pessoa")
-    public Pessoa alterarPessoa(@RequestBody Pessoa pessoa) {
-        return pessoaService.alterar(pessoa);
+    @PutMapping("/altera-pessoa/{id}")
+    public Pessoa alterarPessoa(@RequestBody PessoaDTO pessoa, @PathVariable Integer id) {
+        return pessoaService.alterar(pessoa, id);
     }
 
     @DeleteMapping("/{id}")

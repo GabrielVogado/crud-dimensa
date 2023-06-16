@@ -1,15 +1,15 @@
 package com.teste.dimensa.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
+@Builder
 @Table(name = "Pessoa")
 @AllArgsConstructor
 @NoArgsConstructor
