@@ -43,7 +43,7 @@ Este teste é destinado a todos os níveis de carreira, portanto, não esperamos
 - Baixe o JDK 8, o projeto é configurado na versão Java 1.8 (https://www.oracle.com/java/technologies/downloads/#java8).
 - Faça o download do Maven (https://maven.apache.org/download.cgi).
 - **Observação:** O Java e o Maven devem estar configurados nas variaveis de ambiente. Ex:(https://olamundo-java.blogspot.com/2019/10/configurando-o-maven-no-windows.html).
-  -Download da IDE(Recomendação): https://www.jetbrains.com/idea/.
+- Download da IDE(Recomendação): https://www.jetbrains.com/idea/.
 
 ### Swagger
 - Ao subir o projeto, o swagger estara apontado para o endereço: http://localhost:8080/swagger-ui/index.html.
