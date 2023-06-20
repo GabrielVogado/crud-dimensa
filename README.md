@@ -50,7 +50,7 @@ Este teste é destinado a todos os níveis de carreira, portanto, não esperamos
   - certifique-se de estar com o perfil correto na hora de subir e utilizar a aplicação
 
 ### Swagger
-- Ao subir o projeto, o swagger estara apontado para o endereço: http://localhost:8080/swagger-ui/index.html.
+- Ao subir o projeto localmente, o swagger estara apontado para o endereço: http://localhost:8080/swagger-ui/index.html.
 
 ### Swagger AWS
 - Para Acessar a Aplicação em Hospedagem AWS
