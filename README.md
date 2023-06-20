@@ -39,7 +39,7 @@ Este teste é destinado a todos os níveis de carreira, portanto, não esperamos
 
 - Baixe o instalador Mysql Installer MSI (https://dev.mysql.com/downloads/installer/), escolha as opçoes Server e Workbench.
 - Ao instalar o Mysql, rodar os dumps que se encontram na pasta db deste projeto.
-- **Instruções de DUMP e Download Banco:**https://www.alura.com.br/artigos/restaurar-backup-banco-de-dados-mysql
+- **Instruções de DUMP e Download Banco:** https://www.alura.com.br/artigos/restaurar-backup-banco-de-dados-mysql
 - Baixe o JDK 8, o projeto é configurado na versão Java 1.8 (https://www.oracle.com/java/technologies/downloads/#java8).
 - Faça o download do Maven (https://maven.apache.org/download.cgi).
 - **Observação:** O Java e o Maven devem estar configurados nas variaveis de ambiente. Ex:(https://olamundo-java.blogspot.com/2019/10/configurando-o-maven-no-windows.html).
