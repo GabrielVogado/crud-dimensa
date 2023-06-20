@@ -21,11 +21,19 @@ USE `dimensa`;
 -- Dumping data for table `pessoa`
 --
 
-LOCK TABLES `pessoa` WRITE;
+CREATE TABLE `pessoa` (
+                          `id` bigint NOT NULL AUTO_INCREMENT,
+                          `nome` varchar(255) DEFAULT NULL,
+                          `email` varchar(255) DEFAULT NULL,
+                          `telefone` varchar(255) DEFAULT NULL,
+                          `data_nascimento` varchar(255) DEFAULT NULL,
+                          PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40000 ALTER TABLE `pessoa` DISABLE KEYS */;
 INSERT INTO `pessoa` VALUES (18,'Gabriel','gabriel@email','123456','28-12-1995'),(19,'João','@email','123456','28-12-1995');
+
 /*!40000 ALTER TABLE `pessoa` ENABLE KEYS */;
-UNLOCK TABLES;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

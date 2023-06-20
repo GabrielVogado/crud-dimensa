@@ -19,15 +19,23 @@ USE `dimensa`;
 
 --
 -- Dumping data for table `endereco`
+CREATE TABLE `endereco` (
+                            `id` bigint NOT NULL AUTO_INCREMENT,
+                            `rua` varchar(255) DEFAULT NULL,
+                            `numero` varchar(255) DEFAULT NULL,
+                            `cep` varchar(255) DEFAULT NULL,
+                            `pessoa_id` bigint DEFAULT NULL,
+                            PRIMARY KEY (`id`),
+                            KEY `pessoa_id` (`pessoa_id`),
+                            CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`pessoa_id`) REFERENCES `pessoa` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 --
 
-LOCK TABLES `endereco` WRITE;
-/*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
+--
 INSERT INTO `endereco` VALUES (27,'Qnp 26 Conjunto N','18','72235614',18),(33,'Recife','71','7171',19);
-/*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
+/*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
