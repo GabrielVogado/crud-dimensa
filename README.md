@@ -44,6 +44,10 @@ Este teste é destinado a todos os níveis de carreira, portanto, não esperamos
 - Faça o download do Maven (https://maven.apache.org/download.cgi).
 - **Observação:** O Java e o Maven devem estar configurados nas variaveis de ambiente. Ex:(https://olamundo-java.blogspot.com/2019/10/configurando-o-maven-no-windows.html).
   -Download da IDE(Recomendação): https://www.jetbrains.com/idea/.
+- Neste projeto se encontram dois arquivos application.properties, uma referente ao perfil local e outro com perfil dev
+  - O arquivo application-local.properties esta apontando para o banco local que você ira configurar em sua maquina 
+  - O arquivo application-dev.properties esta apontando para o banco MYSql AWS RDS, o banco de dados armazenado em nuvem
+  - certifique-se de estar com o perfil correto na hora de subir e utilizar a aplicação
 
 ### Swagger
 - Ao subir o projeto, o swagger estara apontado para o endereço: http://localhost:8080/swagger-ui/index.html.
