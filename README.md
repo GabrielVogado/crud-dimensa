@@ -47,3 +47,7 @@ Este teste é destinado a todos os níveis de carreira, portanto, não esperamos
 
 ### Swagger
 - Ao subir o projeto, o swagger estara apontado para o endereço: http://localhost:8080/swagger-ui/index.html.
+
+### Swagger AWS
+- Para Acessar a Aplicação em Hospedagem AWS
+  - http://ec2-16-170-234-149.eu-north-1.compute.amazonaws.com:8080/swagger-ui/index.html#/
