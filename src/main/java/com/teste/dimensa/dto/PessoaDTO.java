@@ -5,8 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.List;
 
 @Builder
@@ -17,21 +20,22 @@ public class PessoaDTO {
 
     @NotNull(message = "Parametro nome não pode ser Nulo")
     @NotBlank(message = "Parametro nome não pode estar em Branco")
+    @NotEmpty(message = "Parametro nome não pode estar vazio")
     private String nome;
 
-    @NotNull(message = "Parametro email não pode ser Nulo")
+    @NotNull(message = "Parametro email não pode ser Nulo ou Formato Invalido")
     @NotBlank(message = "Parametro email não pode estar em Branco")
+    @Email(message = "Invalid email")
+    @NotEmpty(message = "Parametro email não pode estar vazio")
     private String email;
 
     @NotNull(message = "Parametro telefone não pode ser Nulo")
     @NotBlank(message = "Parametro telefone não pode estar em Branco")
+    @NotEmpty(message = "Parametro telefone não pode estar vazio")
     private String telefone;
 
     @NotNull(message = "Parametro dataNascimento não pode ser Nulo")
-    @NotBlank(message = "Parametro dataNascimento não pode estar em Branco")
-    private String dataNascimento;
+    private LocalDate dataNascimento;
 
-    @NotNull(message = "Parametro enderecos não pode ser Nulo")
-    @NotBlank(message = "Parametro enderecos não pode estar em Branco")
     private List<EnderecoDTO> enderecos;
 }

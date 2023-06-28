@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
 
 @Builder
 @AllArgsConstructor
@@ -16,13 +18,16 @@ public class EnderecoDTO {
 
     @NotNull(message = "Parametro Rua não pode ser Nulo")
     @NotBlank(message = "Parametro Rua não pode estar em Branco")
+    @NotEmpty
     private String rua;
 
     @NotNull(message = "Parametro Numero não pode ser Nulo")
     @NotBlank(message = "Parametro Numero não pode estar em Branco")
+    @NotEmpty
     private String numero;
 
     @NotNull(message = "Parametro Cep não pode ser Nulo")
     @NotBlank(message = "Parametro Cep não pode estar em Branco")
+    @NotEmpty
     private String cep;
 }

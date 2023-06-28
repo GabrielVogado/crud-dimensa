@@ -21,24 +21,23 @@ public class EnderecoController implements EnderecoDocument {
         this.enderecoService = enderecoService;
     }
 
-
     @GetMapping("/lista-endereco")
     public List<Endereco> listarEndereco() {
         return enderecoService.listaEndereco();
     }
 
     @GetMapping("/endereco/{id}")
-    public Optional<Endereco> buscaEndereco(@Valid @PathVariable Integer id) {
+    public Optional<Endereco> buscaEndereco(@PathVariable Integer id) {
         return enderecoService.buscaEndereco(id);
     }
 
     @PutMapping("/altera-endereco/{id}")
-    public Endereco alterarEndereco(@Valid@RequestBody EnderecoDTO Endereco, @Valid@PathVariable Integer id) {
+    public @Valid @ResponseBody Endereco alterarEndereco(@RequestBody @Valid EnderecoDTO Endereco, @PathVariable Integer id) {
         return enderecoService.alterarEndereco(Endereco, id);
     }
 
     @DeleteMapping("/excluir-endereco/{id}")
-    public void excluirEndereco(@Valid @PathVariable Integer id) {
+    public void excluirEndereco(@PathVariable Integer id) {
         enderecoService.excluirEndereco(id);
     }
 
