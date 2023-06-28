@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Builder
 @AllArgsConstructor
@@ -30,6 +31,6 @@ public class UpdatePessoaDTO {
 
     @NotNull(message = "Parametro dataNascimento não pode ser Nulo")
     @NotBlank(message = "Parametro dataNascimento não pode estar em Branco")
-    private String dataNascimento;
+    private LocalDate dataNascimento;
 
 }

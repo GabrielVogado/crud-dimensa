@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,7 +43,7 @@ public interface EnderecoDocument {
                             schema = @Schema(implementation = Endereco.class)) }),
             @ApiResponse(responseCode = "400", description = "Erro ao Alterar Objeto",
                     content = @Content) })
-    Endereco alterarEndereco(@Parameter(description = "Dados pertinentes para o Alteração de Enderecos") @RequestBody EnderecoDTO Endereco, Integer id);
+    Endereco alterarEndereco(@Parameter(description = "Dados pertinentes para o Alteração de Enderecos")@RequestBody @Valid EnderecoDTO Endereco, Integer id);
 
     @Operation(summary = "Excluir Dados de uma Endereco")
     @ApiResponses(value = {
