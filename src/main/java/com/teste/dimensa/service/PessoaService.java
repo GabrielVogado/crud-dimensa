@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.teste.dimensa.utils.Utils.formatadorDeData;
-import static com.teste.dimensa.utils.Utils.isValidEmailAddress;
+import static com.teste.dimensa.utils.Utils.*;
 
 @Service
 public class PessoaService implements IPessoaService {
@@ -48,7 +47,7 @@ public class PessoaService implements IPessoaService {
                 .nome(pessoa.getNome())
                 .dataNascimento(formatadorDeData(pessoa.getDataNascimento()))
                 .email(isValidEmailAddress(pessoa.getEmail()) ? pessoa.getEmail() : null)
-                .telefone(pessoa.getTelefone())
+                .telefone(validarTelefone(pessoa.getTelefone())? pessoa.getTelefone() : null)
                 .enderecos(enderecoEntity).build();
         return pessoaRepository.save(pessoaEntity);
     }

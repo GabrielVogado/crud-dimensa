@@ -20,18 +20,18 @@ public class PessoaDTO {
 
     @NotNull(message = "Parametro nome não pode ser Nulo")
     @NotBlank(message = "Parametro nome não pode estar em Branco")
-    @NotEmpty
+    @NotEmpty(message = "Parametro nome não pode estar vazio")
     private String nome;
 
     @NotNull(message = "Parametro email não pode ser Nulo ou Formato Invalido")
     @NotBlank(message = "Parametro email não pode estar em Branco")
     @Email(message = "Invalid email")
-    @NotEmpty
+    @NotEmpty(message = "Parametro email não pode estar vazio")
     private String email;
 
     @NotNull(message = "Parametro telefone não pode ser Nulo")
     @NotBlank(message = "Parametro telefone não pode estar em Branco")
-    @NotEmpty
+    @NotEmpty(message = "Parametro telefone não pode estar vazio")
     private String telefone;
 
     @NotNull(message = "Parametro dataNascimento não pode ser Nulo")

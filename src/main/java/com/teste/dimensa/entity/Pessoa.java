@@ -26,26 +26,26 @@ public class Pessoa implements Serializable {
     @Column(name = "nome")
     @NotNull(message = "nome não pode ser nulo")
     @NotBlank(message = "nome não pode estar em Branco")
-    @NotEmpty
+    @NotEmpty(message = "nome não pode estar vazio")
     private String nome;
 
     @Column(name = "email")
     @NotNull(message = "email não pode ser nulo")
     @NotBlank(message = "email não pode estar em Branco")
-    @NotEmpty
+    @NotEmpty(message = "email não pode estar  Vazio")
     @Email(message = "Invalid email")
     private String email;
 
     @Column(name = "telefone")
     @NotNull(message = "telefone não pode ser nulo")
     @NotBlank(message = "telefone não pode estar em Branco")
-    @NotEmpty
+    @NotEmpty(message = "telefone não pode estar Vazio")
     private String telefone;
 
     @Column(name = "data_nascimento")
     @NotBlank(message = "Data Nascimento não pode estar em Branco")
     @NotNull(message = "Data Nascimento não pode ser nulo")
-    @NotEmpty
+    @NotEmpty(message = "Data Nascimento não pode ser vazio")
     private String dataNascimento;
 
     @OneToMany(cascade = CascadeType.ALL)
