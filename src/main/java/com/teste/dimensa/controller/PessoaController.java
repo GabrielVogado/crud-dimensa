@@ -28,23 +28,23 @@ public class PessoaController implements PessoaDocument {
     }
 
     @GetMapping("/pessoa/{id}")
-    public ResponseEntity<Pessoa> buscaPessoa(@Valid @PathVariable Integer id) {
+    public ResponseEntity<Pessoa> buscaPessoa(@PathVariable Integer id) {
         return pessoaService.buscaPessoa(id).map(pessoa -> ResponseEntity.ok().body(pessoa))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping("/insere-pessoa")
-    public Pessoa salvarPessoa(@Valid @RequestBody PessoaDTO pessoa) {
+    public @Valid @ResponseBody Pessoa salvarPessoa(@RequestBody @Valid PessoaDTO pessoa) {
         return pessoaService.insere(pessoa);
     }
 
     @PutMapping("/altera-pessoa/{id}")
-    public Pessoa alterarPessoa(@Valid @RequestBody UpdatePessoaDTO pessoa, @Valid @PathVariable Integer id) {
+    public Pessoa alterarPessoa(@RequestBody @Valid UpdatePessoaDTO pessoa, @PathVariable Integer id) {
         return pessoaService.alterar(pessoa, id);
     }
 
     @DeleteMapping("/excluir-pessoa/{id}")
-    public void excluirPessoa(@Valid @PathVariable Integer id) {
+    public void excluirPessoa(@PathVariable Integer id) {
         pessoaService.excluir(id);
     }
 }

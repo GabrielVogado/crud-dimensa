@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -43,7 +44,7 @@ public interface PessoaDocument {
                             schema = @Schema(implementation = Pessoa.class)) }),
             @ApiResponse(responseCode = "400", description = "Erro ao Inserir Objeto",
                     content = @Content) })
-    Pessoa salvarPessoa(@Parameter(description = "Dados pertinentes para o cadastro de Pessoas") @RequestBody PessoaDTO pessoa);
+    Pessoa salvarPessoa(@Parameter(description = "Dados pertinentes para o cadastro de Pessoas")@RequestBody @Valid PessoaDTO pessoa);
 
     @Operation(summary = "Altera Dados de uma Pessoa")
     @ApiResponses(value = {
@@ -52,7 +53,7 @@ public interface PessoaDocument {
                             schema = @Schema(implementation = Pessoa.class)) }),
             @ApiResponse(responseCode = "400", description = "Erro ao Alterar Objeto",
                     content = @Content) })
-    Pessoa alterarPessoa(@Parameter(description = "Dados pertinentes para o Alteração de Pessoas") @RequestBody UpdatePessoaDTO pessoa, @PathVariable Integer id);
+    Pessoa alterarPessoa(@Parameter(description = "Dados pertinentes para o Alteração de Pessoas")@RequestBody @Valid UpdatePessoaDTO pessoa, @PathVariable Integer id);
 
     @Operation(summary = "Excluir Dados de uma Pessoa")
     @ApiResponses(value = {

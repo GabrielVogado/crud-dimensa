@@ -4,6 +4,7 @@ import com.teste.dimensa.dto.EnderecoDTO;
 import com.teste.dimensa.entity.Endereco;
 import com.teste.dimensa.iservice.IEnderecoService;
 import com.teste.dimensa.repository.EnderecoRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -47,13 +48,10 @@ public class EnderecoService implements IEnderecoService {
     public Endereco alterarEndereco(EnderecoDTO enderecoDTO, Integer id) {
         return enderecoRepository.findById(id)
                 .map(endereco -> {
-                    endereco.setCep(enderecoDTO.getCep());
-                    endereco.setRua(enderecoDTO.getRua());
-                    endereco.setNumero(enderecoDTO.getNumero());
+                    BeanUtils.copyProperties(enderecoDTO,endereco,"id");
                     Endereco endrecoUpdate = enderecoRepository.save(endereco);
                     return ResponseEntity.ok().body(endrecoUpdate);
                 }).orElse(ResponseEntity.notFound().build()).getBody();
-
     }
 
     /**

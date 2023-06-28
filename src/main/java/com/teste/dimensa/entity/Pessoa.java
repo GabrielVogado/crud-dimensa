@@ -3,6 +3,10 @@ package com.teste.dimensa.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,15 +24,28 @@ public class Pessoa implements Serializable {
     private Integer id;
 
     @Column(name = "nome")
+    @NotNull(message = "nome não pode ser nulo")
+    @NotBlank(message = "nome não pode estar em Branco")
+    @NotEmpty
     private String nome;
 
     @Column(name = "email")
+    @NotNull(message = "email não pode ser nulo")
+    @NotBlank(message = "email não pode estar em Branco")
+    @NotEmpty
+    @Email(message = "Invalid email")
     private String email;
 
     @Column(name = "telefone")
+    @NotNull(message = "telefone não pode ser nulo")
+    @NotBlank(message = "telefone não pode estar em Branco")
+    @NotEmpty
     private String telefone;
 
     @Column(name = "data_nascimento")
+    @NotBlank(message = "Data Nascimento não pode estar em Branco")
+    @NotNull(message = "Data Nascimento não pode ser nulo")
+    @NotEmpty
     private String dataNascimento;
 
     @OneToMany(cascade = CascadeType.ALL)

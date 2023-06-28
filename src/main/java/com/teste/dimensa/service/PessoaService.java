@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static com.teste.dimensa.utils.Utils.formatadorDeData;
+import static com.teste.dimensa.utils.Utils.isValidEmailAddress;
+
 @Service
 public class PessoaService implements IPessoaService {
 
@@ -43,12 +46,13 @@ public class PessoaService implements IPessoaService {
         List<Endereco> enderecoEntity = preencheListaEndereco(pessoa.getEnderecos());
         Pessoa pessoaEntity = Pessoa.builder()
                 .nome(pessoa.getNome())
-                .dataNascimento(pessoa.getDataNascimento())
-                .email(pessoa.getEmail())
+                .dataNascimento(formatadorDeData(pessoa.getDataNascimento()))
+                .email(isValidEmailAddress(pessoa.getEmail()) ? pessoa.getEmail() : null)
                 .telefone(pessoa.getTelefone())
                 .enderecos(enderecoEntity).build();
         return pessoaRepository.save(pessoaEntity);
     }
+
 
     private List<Endereco> preencheListaEndereco(List<EnderecoDTO> enderecos) {
         List<Endereco> enderecoList = new ArrayList<>();
@@ -73,7 +77,7 @@ public class PessoaService implements IPessoaService {
                     pessoaUpdate.setNome(pessoa.getNome());
                     pessoaUpdate.setEmail(pessoa.getEmail());
                     pessoaUpdate.setTelefone(pessoa.getTelefone());
-                    pessoaUpdate.setDataNascimento(pessoa.getDataNascimento());
+                    pessoaUpdate.setDataNascimento(String.valueOf(pessoa.getDataNascimento()));
                     Pessoa updated = pessoaRepository.save(pessoaUpdate);
                     return ResponseEntity.ok().body(updated);
                 }).orElse(ResponseEntity.notFound().build()).getBody();
