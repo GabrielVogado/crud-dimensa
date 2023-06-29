@@ -72,7 +72,7 @@ public class PessoaControllerTest {
         ResponseEntity<Pessoa> resultado = pessoaController.buscaPessoa(1);
 
         // Verificação do resultado
-        assertEquals(HttpStatus.NOT_FOUND, resultado.getStatusCode());
+        assertEquals(HttpStatus.NO_CONTENT, resultado.getStatusCode());
     }
 
     @Test
