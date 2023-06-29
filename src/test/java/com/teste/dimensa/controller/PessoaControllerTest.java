@@ -43,7 +43,7 @@ public class PessoaControllerTest {
         Mockito.when(pessoaService.listaPessoa()).thenReturn(pessoas);
 
         // Chamada do método listarPessoa() no controlador
-        List<Pessoa> resultado = pessoaController.listarPessoa();
+        List<Pessoa> resultado = pessoaController.listarPessoa().getBody();
 
         // Verificação do resultado
         assertEquals(pessoas, resultado);
@@ -86,7 +86,7 @@ public class PessoaControllerTest {
         Mockito.when(pessoaService.insere(pessoaDTO)).thenReturn(pessoaSalva);
 
         // Chamada do método salvarPessoa() no controlador
-        Pessoa resultado = pessoaController.salvarPessoa(pessoaDTO);
+        Pessoa resultado = pessoaController.salvarPessoa(pessoaDTO).getBody();
 
         // Verificação do resultado
         assertEquals(pessoaSalva, resultado);

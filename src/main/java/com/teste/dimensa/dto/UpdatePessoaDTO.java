@@ -30,7 +30,6 @@ public class UpdatePessoaDTO {
     private String telefone;
 
     @NotNull(message = "Parametro dataNascimento não pode ser Nulo")
-    @NotBlank(message = "Parametro dataNascimento não pode estar em Branco")
     private LocalDate dataNascimento;
 
 }

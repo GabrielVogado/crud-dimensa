@@ -1,3 +1,4 @@
+/*
 package com.teste.dimensa.config;
 
 import org.springframework.http.HttpHeaders;
@@ -49,3 +50,4 @@ public class GlobalExceptionHandler {
         return errorResponse;
     }
 }
+*/
